@@ -2,13 +2,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package logging
+package log
 
 import (
 	"bytes"
 	"fmt"
 	"io"
-	"log"
+	logpkg "log"
 )
 
 // TODO initialize here
@@ -30,13 +30,13 @@ const (
 
 // LogBackend utilizes the standard log module.
 type LogBackend struct {
-	Logger *log.Logger
+	Logger *logpkg.Logger
 	Color  bool
 }
 
 // NewLogBackend creates a new LogBackend.
 func NewLogBackend(out io.Writer, prefix string, flag int) *LogBackend {
-	return &LogBackend{Logger: log.New(out, prefix, flag)}
+	return &LogBackend{Logger: logpkg.New(out, prefix, flag)}
 }
 
 func (b *LogBackend) Log(level Level, calldepth int, rec *Record) error {

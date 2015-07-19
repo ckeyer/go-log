@@ -4,7 +4,7 @@
 
 // +build !appengine
 
-package logging
+package log
 
 import (
 	"sync"

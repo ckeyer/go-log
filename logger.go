@@ -5,12 +5,12 @@
 // Package logging implements a logging infrastructure for Go. It supports
 // different logging backends like syslog, file and memory. Multiple backends
 // can be utilized with different log levels per backend and logger.
-package logging
+package log
 
 import (
 	"bytes"
 	"fmt"
-	"log"
+	logpkg "log"
 	"os"
 	"strings"
 	"sync/atomic"
@@ -18,7 +18,7 @@ import (
 )
 
 // Redactor is an interface for types that may contain sensitive information
-// (like passwords), which shouldn't be printed to the log. The idea was found
+// (like passwords), which shouldn't be printed to the logpkg The idea was found
 // in relog as part of the vitness project.
 type Redactor interface {
 	Redacted() interface{}
@@ -115,7 +115,7 @@ func Reset() {
 	// if there's no backends at all configured, we could use some tricks to
 	// automatically setup backends based if we have a TTY or not.
 	sequenceNo = 0
-	b := SetBackend(NewLogBackend(os.Stderr, "", log.LstdFlags))
+	b := SetBackend(NewLogBackend(os.Stderr, "", logpkg.LstdFlags))
 	b.SetLevel(DEBUG, "")
 	SetFormatter(DefaultFormatter)
 	timeNow = time.Now

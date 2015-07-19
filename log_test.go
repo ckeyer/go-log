@@ -2,19 +2,19 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package logging
+package log
 
 import (
 	"bytes"
 	"io/ioutil"
-	"log"
+	logpkg "log"
 	"strings"
 	"testing"
 )
 
 func TestLogCalldepth(t *testing.T) {
 	buf := &bytes.Buffer{}
-	SetBackend(NewLogBackend(buf, "", log.Lshortfile))
+	SetBackend(NewLogBackend(buf, "", logpkg.Lshortfile))
 	SetFormatter(MustStringFormatter("%{shortfile} %{level} %{message}"))
 
 	log := MustGetLogger("test")
@@ -74,13 +74,13 @@ func BenchmarkLogLogBackendColor(b *testing.B) {
 }
 
 func BenchmarkLogLogBackendStdFlags(b *testing.B) {
-	backend := SetBackend(NewLogBackend(ioutil.Discard, "", log.LstdFlags))
+	backend := SetBackend(NewLogBackend(ioutil.Discard, "", logpkg.LstdFlags))
 	backend.SetLevel(DEBUG, "")
 	RunLogBenchmark(b)
 }
 
 func BenchmarkLogLogBackendLongFileFlag(b *testing.B) {
-	backend := SetBackend(NewLogBackend(ioutil.Discard, "", log.Llongfile))
+	backend := SetBackend(NewLogBackend(ioutil.Discard, "", logpkg.Llongfile))
 	backend.SetLevel(DEBUG, "")
 	RunLogBenchmark(b)
 }
