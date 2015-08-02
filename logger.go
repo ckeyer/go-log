@@ -99,6 +99,18 @@ func GetLogger(module string) (*Logger, error) {
 	return &Logger{Module: module}, nil
 }
 
+// GetDefaultLogger creates and returns a default logger object based on name "default"
+func GetDefaultLogger() *Logger {
+	format := MustStringFormatter(
+		"%{time:15:04:05} [%{color}%{level:.4s}%{color:reset}] %{shortfile} %{color}▶%{color:reset} %{message}")
+	log := MustGetLogger("default")
+
+	backend := NewLogBackend(os.Stderr, "", 0)
+	backendFormatter := NewBackendFormatter(backend, format)
+	SetBackend(backendFormatter)
+	return log
+}
+
 // MustGetLogger is like GetLogger but panics if the logger can't be created.
 // It simplifies safe initialization of a global logger for eg. a package.
 func MustGetLogger(module string) *Logger {
