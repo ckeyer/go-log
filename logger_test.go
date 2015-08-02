@@ -18,7 +18,7 @@ func TestSequenceNoOverflow(t *testing.T) {
 	sequenceNo = ^uint64(0)
 
 	log := MustGetLogger("test")
-	log.Debug("test")
+	log.Debugf("test")
 
 	if MemoryRecordN(backend, 0).Id != 0 {
 		t.Errorf("Unexpected sequence no: %v", MemoryRecordN(backend, 0).Id)
@@ -29,7 +29,7 @@ func TestRedact(t *testing.T) {
 	backend := InitForTesting(DEBUG)
 	password := Password("123456")
 	log := MustGetLogger("test")
-	log.Debug("foo %s", password)
+	log.Debugf("foo %s", password)
 	if "foo ******" != MemoryRecordN(backend, 0).Formatted(0) {
 		t.Errorf("redacted line: %v", MemoryRecordN(backend, 0))
 	}
