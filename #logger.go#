@@ -100,12 +100,12 @@ func GetLogger(module string) (*Logger, error) {
 }
 
 // GetDefaultLogger creates and returns a default logger object based on name "default"
-func GetDefaultLogger() *Logger {
+func() *Logger {
 	format := MustStringFormatter(
 		"%{time:15:04:05} [%{color}%{level:.4s}%{color:reset}] %{shortfile} %{color}▶%{color:reset} %{message}")
 	log := MustGetLogger("default")
 
-	backend := NewLogBackend(os.Stdout, "", 0)
+	backend := NewLogBackend(os.Stderr, "", 0)
 	backendFormatter := NewBackendFormatter(backend, format)
 	SetBackend(backendFormatter)
 	return log
