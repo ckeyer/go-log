@@ -6,7 +6,7 @@ import (
 
 //
 func main() {
-	log := logging.GetDefaultLogger()
+	log := logging.GetDefaultLogger("ckeyer test")
 
 	log.Debug("heelosdf")
 	log.Error("heleo")
