@@ -45,7 +45,7 @@ var (
 
 // LogBackend utilizes the standard log module.
 type LogBackend struct {
-	Logger      *log.Logger
+	Logger      *logpkg.Logger
 	Color       bool
 	ColorConfig []string
 }

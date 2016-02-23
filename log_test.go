@@ -46,7 +46,7 @@ func rec(log *Logger, r int) {
 
 func testCallpath(t *testing.T, format string, expect string) {
 	buf := &bytes.Buffer{}
-	SetBackend(NewLogBackend(buf, "", log.Lshortfile))
+	SetBackend(NewLogBackend(buf, "", logpkg.Lshortfile))
 	SetFormatter(MustStringFormatter(format))
 
 	logger := MustGetLogger("test")
