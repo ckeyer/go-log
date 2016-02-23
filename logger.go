@@ -119,7 +119,7 @@ func GetDefaultLogger(name string) *Logger {
 		"%{time:15:04:05} [%{color}%{level:.4s}%{color:reset}] %{shortfile} %{color}▶%{color:reset} %{message}")
 	log := MustGetLogger(name)
 
-	backend := NewLogBackend(os.Stderr, name+": ", 0)
+	backend := NewLogBackend(os.Stdout, name+": ", 0)
 	backendFormatter := NewBackendFormatter(backend, format)
 	SetBackend(backendFormatter)
 	return log
