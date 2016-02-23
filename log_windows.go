@@ -3,12 +3,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package logging
+package log
 
 import (
 	"bytes"
 	"io"
-	"log"
+	logpkg "log"
 	"syscall"
 )
 
@@ -60,7 +60,7 @@ type file interface {
 
 // LogBackend utilizes the standard log module.
 type LogBackend struct {
-	Logger *log.Logger
+	Logger *logpkg.Logger
 	Color  bool
 
 	// f is set to a non-nil value if the underlying writer which logs writes to
@@ -70,7 +70,7 @@ type LogBackend struct {
 
 // NewLogBackend creates a new LogBackend.
 func NewLogBackend(out io.Writer, prefix string, flag int) *LogBackend {
-	b := &LogBackend{Logger: log.New(out, prefix, flag)}
+	b := &LogBackend{Logger: logpkg.New(out, prefix, flag)}
 
 	// Unfortunately, the API used only takes an io.Writer where the Windows API
 	// need the actual fd to change colors.

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	logging "github.com/ckeyer/log"
+	logging "github.com/ckeyer/go-log"
 )
 
 var log = logging.MustGetLogger("example")
