@@ -5,7 +5,7 @@ import (
 )
 
 //
-func main() {
+func main2() {
 	log := logging.GetDefaultLogger("ckeyer test")
 
 	log.Debug("heelosdf")
